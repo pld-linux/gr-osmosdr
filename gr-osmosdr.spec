@@ -11,7 +11,7 @@ Source0:	%{name}-%{snap}.tar.bz2
 BuildRequires:	boost-devel
 BuildRequires:	cmake
 BuildRequires:	doxygen
-BuildRequires:	gnuradio-devel
+BuildRequires:	gnuradio-devel >= 3.7
 BuildRequires:	graphviz
 BuildRequires:	python-devel
 BuildRequires:	rtl-sdr-devel
@@ -52,6 +52,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -rf doc-inst
+mv $RPM_BUILD_ROOT%{_docdir}/%{name} doc-inst
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -60,14 +63,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING
-%attr(755,root,root) %{_bindir}/*
-%{_libdir}/*.so.*
-%{py_sitedir}/*
-%{_datadir}/gnuradio/grc/blocks/*
+%doc AUTHORS COPYING doc-inst/*
+%attr(755,root,root) %{_bindir}/osmocom_fft
+%attr(755,root,root) %{_bindir}/osmocom_siggen
+%attr(755,root,root) %{_bindir}/osmocom_siggen_nogui
+%attr(755,root,root) %{_bindir}/osmocom_spectrum_sense
+%attr(755,root,root) %{_libdir}/libgnuradio-osmosdr-*.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnuradio-osmosdr-*.so.0
+%dir %{py_sitedir}/osmosdr
+%attr(755,root,root) %{py_sitedir}/osmosdr/*.so
+%{py_sitedir}/osmosdr/*.py*
+%{_datadir}/gnuradio/grc/blocks/osmosdr_sink.xml
+%{_datadir}/gnuradio/grc/blocks/osmosdr_source.xml
+%{_datadir}/gnuradio/grc/blocks/rtlsdr_source.xml
 
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/osmosdr
-%{_libdir}/*.so
-%{_pkgconfigdir}/*.pc
+%attr(755,root,root) %{_libdir}/libgnuradio-osmosdr.so
+%attr(755,root,root) %{_libdir}/libgnuradio-osmosdr-*.so
+%{_pkgconfigdir}/gnuradio-osmosdr.pc
