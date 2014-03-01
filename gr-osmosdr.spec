@@ -13,8 +13,8 @@ BuildRequires:	cmake
 BuildRequires:	doxygen
 BuildRequires:	gnuradio-devel >= 3.7
 BuildRequires:	graphviz
+BuildRequires:	librtlsdr-devel
 BuildRequires:	python-devel
-BuildRequires:	rtl-sdr-devel
 BuildRequires:	swig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
