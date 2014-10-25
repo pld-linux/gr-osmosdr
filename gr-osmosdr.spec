@@ -1,8 +1,9 @@
 %define snap	20140111
+%define	rel	3
 Summary:	Common software API for various radio hardware
 Name:		gr-osmosdr
 Version:	0.1.1
-Release:	0.%{snap}.2
+Release:	0.%{snap}.%{rel}
 License:	GPL v3+
 Group:		Applications/Engineering
 URL:		http://sdr.osmocom.org/trac/wiki/GrOsmoSDR
