@@ -1,5 +1,5 @@
 %define snap	20140111
-%define	rel	3
+%define	rel	4
 Summary:	Common software API for various radio hardware
 Name:		gr-osmosdr
 Version:	0.1.1
