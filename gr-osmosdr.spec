@@ -1,18 +1,16 @@
-%define snap	20140111
-%define	rel	4
 Summary:	Common software API for various radio hardware
 Name:		gr-osmosdr
-Version:	0.1.1
-Release:	0.%{snap}.%{rel}
+Version:	0.1.4
+Release:	1
 License:	GPL v3+
 Group:		Applications/Engineering
 URL:		http://sdr.osmocom.org/trac/wiki/GrOsmoSDR
-Source0:	%{name}-%{snap}.tar.bz2
-# Source0-md5:	15fbc7e472ee40669c083c1715c7bc58
+Source0:	http://git.osmocom.org/gr-osmosdr/snapshot/%{name}-%{version}.tar.xz
+# Source0-md5:	da9733eee05e1409beb1c606c2db4521
 BuildRequires:	boost-devel
 BuildRequires:	cmake
 BuildRequires:	doxygen
-BuildRequires:	gnuradio-devel >= 3.7
+BuildRequires:	gnuradio-devel >= 3.7.3
 BuildRequires:	graphviz
 BuildRequires:	librtlsdr-devel
 BuildRequires:	python-devel
@@ -35,7 +33,7 @@ Requires:	%{name} = %{version}-%{release}
 Development files for gr-osmosdr.
 
 %prep
-%setup -q -n %{name}
+%setup -q
 
 %build
 install -d build
