@@ -1,7 +1,7 @@
 Summary:	Common software API for various radio hardware
 Name:		gr-osmosdr
 Version:	0.1.4
-Release:	4
+Release:	5
 License:	GPL v3+
 Group:		Applications/Engineering
 URL:		http://sdr.osmocom.org/trac/wiki/GrOsmoSDR
