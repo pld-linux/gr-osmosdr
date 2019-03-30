@@ -1,7 +1,11 @@
+#
+# Conditional build:
+%bcond_with	python		# build with python support
+#
 Summary:	Common software API for various radio hardware
 Name:		gr-osmosdr
 Version:	0.1.4
-Release:	5
+Release:	6
 License:	GPL v3+
 Group:		Applications/Engineering
 URL:		http://sdr.osmocom.org/trac/wiki/GrOsmoSDR
@@ -14,8 +18,8 @@ BuildRequires:	gnuradio-devel >= 3.7.3
 BuildRequires:	graphviz
 BuildRequires:	log4cpp-devel
 BuildRequires:	librtlsdr-devel
-BuildRequires:	python-devel
-BuildRequires:	swig
+%{?with_python:BuildRequires:	python-devel}
+%{?with_python:BuildRequires:	swig}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,6 +44,7 @@ Development files for gr-osmosdr.
 install -d build
 cd build
 %cmake \
+	%{!?with_python:-DENABLE_PYTHON=OFF} \
 	-DENABLE_DOXYGEN=on \
 	-DGR_PKG_DOC_DIR=%{_docdir}/%{name} \
 	..
@@ -64,18 +69,20 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING doc-inst/*
+%if %{with python}
 %attr(755,root,root) %{_bindir}/osmocom_fft
 %attr(755,root,root) %{_bindir}/osmocom_siggen
 %attr(755,root,root) %{_bindir}/osmocom_siggen_nogui
 %attr(755,root,root) %{_bindir}/osmocom_spectrum_sense
-%attr(755,root,root) %{_libdir}/libgnuradio-osmosdr-*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnuradio-osmosdr-*.so.0
 %dir %{py_sitedir}/osmosdr
 %attr(755,root,root) %{py_sitedir}/osmosdr/*.so
 %{py_sitedir}/osmosdr/*.py*
 %{_datadir}/gnuradio/grc/blocks/osmosdr_sink.xml
 %{_datadir}/gnuradio/grc/blocks/osmosdr_source.xml
 %{_datadir}/gnuradio/grc/blocks/rtlsdr_source.xml
+%endif
+%attr(755,root,root) %{_libdir}/libgnuradio-osmosdr-*.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnuradio-osmosdr-*.so.0
 
 %files devel
 %defattr(644,root,root,755)
