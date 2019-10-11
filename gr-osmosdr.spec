@@ -5,12 +5,12 @@
 Summary:	Common software API for various radio hardware
 Name:		gr-osmosdr
 Version:	0.1.4
-Release:	7
+Release:	8
 License:	GPL v3+
 Group:		Applications/Engineering
-URL:		http://sdr.osmocom.org/trac/wiki/GrOsmoSDR
 Source0:	http://git.osmocom.org/gr-osmosdr/snapshot/%{name}-%{version}.tar.xz
 # Source0-md5:	da9733eee05e1409beb1c606c2db4521
+URL:		http://sdr.osmocom.org/trac/wiki/GrOsmoSDR
 BuildRequires:	boost-devel
 BuildRequires:	cmake
 BuildRequires:	doxygen
